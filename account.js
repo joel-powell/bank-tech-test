@@ -2,12 +2,15 @@ module.exports = class Account {
   transactions = [];
 
   statement() {
-    const formatted = this.transactions.map(
-      ({ date, amount }) =>
-        `${this.#formatDate(date)} || ${amount.toFixed(
-          2
-        )} || || ${amount.toFixed(2)}`
-    );
+    let total = 0;
+
+    const formatted = this.transactions
+      .map(
+        ({ date, amount }) =>
+          `${this.#formatDate(date)} || ${amount.toFixed(2)} || || ${(total +=
+            amount).toFixed(2)}`
+      )
+      .reverse();
 
     formatted.unshift("date || credit || debit || balance");
 
