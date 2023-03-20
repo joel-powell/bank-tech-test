@@ -4,22 +4,30 @@ module.exports = class Account {
   statement() {
     let total = 0;
 
-    const formatted = this.transactions
-      .map(
-        ({ date, amount }) =>
-          `${this.#formatDate(date)} || ${amount.toFixed(2)} || || ${(total +=
-            amount).toFixed(2)}`
-      )
-      .reverse();
+    const formatted = this.transactions.map(({ date, amount }) =>
+      [
+        this.#formatDate(date),
+        amount > 0 && amount.toFixed(2),
+        amount < 0 && Math.abs(amount).toFixed(2),
+        (total += amount).toFixed(2),
+      ]
+        .join(" || ")
+        .replace(" false ", " ")
+    );
 
-    formatted.unshift("date || credit || debit || balance");
+    formatted.push("date || credit || debit || balance");
 
-    console.log(formatted.join("\n"));
+    console.log(formatted.reverse().join("\n"));
   }
 
   deposit(amount) {
     const date = new Date();
     this.transactions.push({ date, amount });
+  }
+
+  withdraw(amount) {
+    const date = new Date();
+    this.transactions.push({ date, amount: -amount });
   }
 
   #formatDate(date) {
