@@ -4,30 +4,32 @@ module.exports = class Account {
   statement() {
     let total = 0;
 
-    const formatted = this.transactions.map(({ date, amount }) =>
+    const formattedRow = this.transactions.map(({ date, amount }) =>
       [
         this.#formatDate(date),
-        amount > 0 && amount.toFixed(2),
-        amount < 0 && Math.abs(amount).toFixed(2),
+        this.#formatAmount(amount),
         (total += amount).toFixed(2),
-      ]
-        .join(" || ")
-        .replace(" false ", " ")
+      ].join(" || ")
     );
 
-    formatted.push("date || credit || debit || balance");
+    formattedRow.push("date || credit || debit || balance");
 
-    console.log(formatted.reverse().join("\n"));
+    const formattedStatement = formattedRow.reverse().join("\n");
+
+    console.log(formattedStatement);
   }
 
   deposit(amount) {
-    const date = new Date();
-    this.transactions.push({ date, amount });
+    this.#pushTransaction(amount);
   }
 
   withdraw(amount) {
+    this.#pushTransaction(-amount);
+  }
+
+  #pushTransaction(amount) {
     const date = new Date();
-    this.transactions.push({ date, amount: -amount });
+    this.transactions.push({ date, amount });
   }
 
   #formatDate(date) {
@@ -36,5 +38,11 @@ module.exports = class Account {
       month: "2-digit",
       day: "2-digit",
     });
+  }
+
+  #formatAmount(amount) {
+    const columns = ["||", Math.abs(amount).toFixed(2)];
+    if (amount > 0) columns.reverse();
+    return columns.join(" ");
   }
 };
