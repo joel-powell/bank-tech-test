@@ -1,18 +1,11 @@
 # Bank tech test
 
-Today, you'll practice doing a tech test.
-
-For most tech tests, you'll essentially have unlimited time.  This practice session is about producing the best code you can when there is a minimal time pressure.
-
-You'll get to practice your OO design and TDD skills.
-
-You'll work alone, and you'll also review your own code so you can practice reflecting on and improving your own work.
-
 ## Specification
 
 ### Requirements
 
-* You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command line interface that takes input from STDIN.)
+* You should be able to interact with your code via a REPL like IRB or Node.  (You don't need to implement a command
+  line interface that takes input from STDIN.)
 * Deposits, withdrawal.
 * Account statement (date, amount, balance) printing.
 * Data can be kept in memory (it doesn't need to be stored to a database or anything).
@@ -32,6 +25,48 @@ date || credit || debit || balance
 10/01/2023 || 1000.00 || || 1000.00
 ```
 
-## Self-assessment
+## Installation
 
-Once you have completed the challenge and feel happy with your solution, here's a form to help you reflect on the quality of your code: https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit
+The project is written in JavaScript and uses NPM for its package manager.
+
+1. Fork and clone the repo to your local machine
+2. Install Node.js dependencies:
+
+```
+npm install
+```
+
+## Run
+
+Example running of program in terminal:
+
+```javascript
+bank-tech-test % node
+Welcome to Node.js v19.5.0.
+Type ".help" for more information.
+> const Account = require("./account");
+undefined
+> const account = new Account();
+undefined
+> account.deposit(1000)
+undefined
+> account.deposit(2000)
+undefined
+> account.withdraw(500)
+undefined
+> account.statement()
+date || credit || debit || balance
+20/03/2023 || || 500.00 || 2500.00
+20/03/2023 || 2000.00 || || 3000.00
+20/03/2023 || 1000.00 || || 1000.00
+```
+
+## Testing
+
+The project uses Jest for testing.
+
+To run all the tests with code coverage you can use the command:
+
+```
+npm test
+```
