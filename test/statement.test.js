@@ -1,5 +1,5 @@
-const Statement = require("./statement");
-const Account = require("./account");
+const Statement = require("../src/statement");
+const Account = require("../src/account");
 
 describe("Statement", () => {
   const consoleSpy = jest.spyOn(console, "log");

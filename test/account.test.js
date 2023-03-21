@@ -1,4 +1,4 @@
-const Account = require("./account");
+const Account = require("../src/account");
 
 describe("Account", () => {
   describe("initially", () => {

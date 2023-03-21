@@ -41,7 +41,8 @@ npm install
 Example running of program in terminal:
 
 ```javascript
-bank-tech-test % node    
+bank-tech-test % cd src
+src % node
 Welcome to Node.js v19.5.0.
 Type ".help" for more information.
 > const Account = require("./account");
