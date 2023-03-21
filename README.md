@@ -41,24 +41,28 @@ npm install
 Example running of program in terminal:
 
 ```javascript
-bank-tech-test % node
+bank-tech-test % node    
 Welcome to Node.js v19.5.0.
 Type ".help" for more information.
 > const Account = require("./account");
 undefined
+> const Statement = require("./statement");
+undefined
 > const account = new Account();
 undefined
-> account.deposit(1000)
+> const statement = new Statement();
 undefined
-> account.deposit(2000)
+> account.deposit(1000);
 undefined
-> account.withdraw(500)
+> account.deposit(2000);
 undefined
-> account.statement()
+> account.withdraw(500);
+undefined
+> statement.generate(account.transactions);
 date || credit || debit || balance
-20/03/2023 || || 500.00 || 2500.00
-20/03/2023 || 2000.00 || || 3000.00
-20/03/2023 || 1000.00 || || 1000.00
+21/03/2023 || || 500.00 || 2500.00
+21/03/2023 || 2000.00 || || 3000.00
+21/03/2023 || 1000.00 || || 1000.00
 ```
 
 ## Testing
